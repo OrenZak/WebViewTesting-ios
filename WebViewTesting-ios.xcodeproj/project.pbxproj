@@ -15,6 +15,8 @@
 		2B354F65250E4B0400E02CD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B354F63250E4B0400E02CD4 /* LaunchScreen.storyboard */; };
 		2B354F70250E4B0400E02CD4 /* WebViewTesting_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B354F6F250E4B0400E02CD4 /* WebViewTesting_iosTests.swift */; };
 		2B354F7B250E4B0400E02CD4 /* WebViewTesting_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B354F7A250E4B0400E02CD4 /* WebViewTesting_iosUITests.swift */; };
+		2B354F89250E4DDB00E02CD4 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B354F88250E4DDB00E02CD4 /* WebView.swift */; };
+		2B354F8D250E4FB300E02CD4 /* testing.html in Resources */ = {isa = PBXBuildFile; fileRef = 2B354F8C250E4FB300E02CD4 /* testing.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		2B354F76250E4B0400E02CD4 /* WebViewTesting-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WebViewTesting-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B354F7A250E4B0400E02CD4 /* WebViewTesting_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewTesting_iosUITests.swift; sourceTree = "<group>"; };
 		2B354F7C250E4B0400E02CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B354F88250E4DDB00E02CD4 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		2B354F8C250E4FB300E02CD4 /* testing.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = testing.html; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 		2B354F57250E4B0100E02CD4 /* WebViewTesting-ios */ = {
 			isa = PBXGroup;
 			children = (
+				2B354F8C250E4FB300E02CD4 /* testing.html */,
+				2B354F88250E4DDB00E02CD4 /* WebView.swift */,
 				2B354F58250E4B0100E02CD4 /* AppDelegate.swift */,
 				2B354F5A250E4B0100E02CD4 /* SceneDelegate.swift */,
 				2B354F5C250E4B0100E02CD4 /* ContentView.swift */,
@@ -241,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B354F65250E4B0400E02CD4 /* LaunchScreen.storyboard in Resources */,
+				2B354F8D250E4FB300E02CD4 /* testing.html in Resources */,
 				2B354F62250E4B0400E02CD4 /* Preview Assets.xcassets in Resources */,
 				2B354F5F250E4B0400E02CD4 /* Assets.xcassets in Resources */,
 			);
@@ -268,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B354F59250E4B0100E02CD4 /* AppDelegate.swift in Sources */,
+				2B354F89250E4DDB00E02CD4 /* WebView.swift in Sources */,
 				2B354F5B250E4B0100E02CD4 /* SceneDelegate.swift in Sources */,
 				2B354F5D250E4B0100E02CD4 /* ContentView.swift in Sources */,
 			);

@@ -10,34 +10,73 @@ import XCTest
 
 class WebViewTesting_iosUITests: XCTestCase {
 
+    let app: XCUIApplication = XCUIApplication()
+    lazy var webview: XCUIElement = app.webViews.element(boundBy: 0)
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    func testPrintWebViewHie() {
+        debugPrint(webview)
+    }
+    
+    func testDiv() {
+        XCTAssertTrue(webview.otherElements["divdiv1"].exists)
     }
 
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
+    func testInsideDeepHierarchy() {
+        XCTAssertTrue(webview.staticTexts["testingh1-2"].exists)
+    }
+    
+    func testSetInuputAndChangeText() {
+        let TEXT = "This is the new text"
+        let textInput = webview.textFields["textInput"]
+        textInput.tap()
+        textInput.typeText("")
+        textInput.typeText(TEXT)
+        webview.buttons["changeTextBtn"].tap()
+        XCTAssertTrue(webview.staticTexts[TEXT].waitForExistence(timeout: 250))
+    }
+
+    func testScrollToView() {
+        let textInput2 = webview.textFields["textInput2"]
+        webview.scrollToElement(element: textInput2)
+        XCTAssertTrue(textInput2.isHittable)
+    }
+}
+
+extension XCTestCase {
+  func wait(for duration: TimeInterval) {
+    let waitExpectation = expectation(description: "Waiting")
+    let when = DispatchTime.now() + duration
+    DispatchQueue.main.asyncAfter(deadline: when) {
+      waitExpectation.fulfill()
+    }
+    // We use a buffer here to avoid flakiness with Timer on CI
+    waitForExpectations(timeout: duration + 0.5)
+  }
+  /// Wait for element to appear
+  func wait(for element: XCUIElement, timeout duration: TimeInterval) {
+    let predicate = NSPredicate(format: "exists == true")
+    let _ = expectation(for: predicate, evaluatedWith: element, handler: nil)
+    // We use a buffer here to avoid flakiness with Timer on CI
+    waitForExpectations(timeout: duration + 0.5)
+  }
+}
+
+extension XCUIElement {
+
+    func scrollToElement(element: XCUIElement) {
+        while !element.visible() {
+            swipeUp()
         }
     }
+
+    func visible() -> Bool {
+        guard self.exists && !self.frame.isEmpty else { return false }
+        return XCUIApplication().windows.element(boundBy: 0).frame.contains(self.frame)
+    }
+
 }
